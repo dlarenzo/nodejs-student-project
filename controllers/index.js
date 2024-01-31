@@ -1,5 +1,5 @@
 const awesomeFunction = (Req, res) => {
-  res.send("Hello World!");
+  res.send("THIS IS AMAZING!");
 };
 
 const tooeleTech = (Req, res) => {
