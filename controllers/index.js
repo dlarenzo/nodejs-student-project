@@ -71,6 +71,63 @@ const createStudent = async (req, res) => {
   }
 };
 
+// UPDATE ONE STUDENT
+const updateStudent = async (req, res) => {
+  try {
+    const userId = new ObjectId(req.params.id);
+    const student = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      age: req.body.age,
+      currentCollege: req.body.currentCollege,
+    };
+
+    const response = await mongodb
+      .getDb()
+      .db()
+      .collection("students")
+      .replaceOne({ _id: userId }, student);
+
+    if (response.acknowledged) {
+      res.status(204).json(response);
+    } else {
+      res
+        .status(500)
+        .json(
+          response.error || "Some error occurred while updating the student."
+        );
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+//  DELETE METHOD
+const deleteStudent = async (req, res) => {
+  try {
+    const userId = new ObjectId(req.params.id);
+    const response = await mongodb
+      .getDb()
+      .db()
+      .collection("students")
+      .deleteOne({ _id: userId }, true);
+
+    console.log(response);
+    if (response.acknowledged) {
+      res.status(200).send(response);
+    } else {
+      res
+        .status(500)
+        .json(
+          response.error || "Some error occurred while deleting the student."
+        );
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
 // EXPORT TO ANOTHER FILE
 module.exports = {
   awesomeFunction,
@@ -78,4 +135,6 @@ module.exports = {
   getAllStudents,
   getSingleStudent,
   createStudent,
+  updateStudent,
+  deleteStudent,
 };
