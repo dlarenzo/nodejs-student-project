@@ -4,5 +4,11 @@ GET http://localhost:3000/ttech HTTP/1.1
 ### GET THE ROOT PATH
 GET http://localhost:3000/ HTTP/1.1
 
-### GET STUDENTS ROUTE
+### GET ALL STUDENTS ROUTE
 GET http://localhost:3000/students HTTP/1.1
+
+### GET ONE STUDENT
+GET http://localhost:3000/students/65bbc5bbee297c4754901fb6 HTTP/1.1
+
+### CREATE STUDENT
+POST http://localhost:3000/students HTTP/1.1 Content-Type: application/json
