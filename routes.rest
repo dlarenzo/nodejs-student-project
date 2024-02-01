@@ -3,3 +3,6 @@ GET http://localhost:3000/ttech HTTP/1.1
 
 ### GET THE ROOT PATH
 GET http://localhost:3000/ HTTP/1.1
+
+### GET STUDENTS ROUTE
+GET http://localhost:3000/students HTTP/1.1
